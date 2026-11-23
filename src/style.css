@@ -1,0 +1,68 @@
+/* drag-to-swipe — optional base styles */
+
+.dts-scroller {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+}
+
+.dts-hide-scrollbar {
+    scrollbar-width: none;
+}
+.dts-hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* turned off: no horizontal scroll, vertical page scroll still works on touch */
+.dts-disabled {
+    overflow-x: hidden;
+    touch-action: pan-y;
+}
+
+.dts-dragging {
+    cursor: grabbing;
+    user-select: none;
+}
+/* keep hover effects / clicks off children while dragging */
+.dts-dragging * {
+    pointer-events: none;
+}
+
+/* rubber-band past the edges — applied only while dragging / returning,
+   so a permanent transform never changes the containing block of fixed descendants */
+.dts-overscrolling > * {
+    transform: translateX(var(--dts-overscroll, 0px));
+}
+
+/* indicators */
+.dts-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--dts-dot-gap, 8px);
+}
+.dts-dot {
+    width: var(--dts-dot-size, 6px);
+    height: var(--dts-dot-size, 6px);
+    padding: 0;
+    border: 0;
+    border-radius: calc(var(--dts-dot-size, 6px) / 2);
+    background: var(--dts-dot-color, #ddd);
+    transition:
+        width 0.2s,
+        background-color 0.2s;
+}
+.dts-dot.is-active {
+    width: var(--dts-dot-active-width, var(--dts-dot-size, 6px));
+    background: var(--dts-dot-active-color, #222);
+}
+button.dts-dot {
+    cursor: pointer;
+}
+
+.dts-fraction {
+    color: var(--dts-fraction-color, #999);
+    font-size: var(--dts-fraction-font-size, 12px);
+}
+.dts-fraction-current {
+    color: var(--dts-fraction-current-color, #222);
+    font-weight: 500;
+}

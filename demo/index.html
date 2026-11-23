@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>drag-to-swipe demo</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 24px 0;
+                font-family: system-ui, sans-serif;
+                color: #222;
+            }
+            h2 {
+                margin: 32px 20px 12px;
+                font-size: 16px;
+            }
+            p {
+                margin: 0 20px 12px;
+                color: #777;
+                font-size: 13px;
+            }
+            .carousel {
+                display: flex;
+                gap: 12px;
+                padding: 0 20px;
+                scroll-snap-type: x mandatory;
+                scroll-padding: 0 20px;
+            }
+            .card {
+                flex: 0 0 160px;
+                height: 200px;
+                border-radius: 12px;
+                scroll-snap-align: start;
+                display: grid;
+                place-items: center;
+                font-size: 28px;
+                font-weight: 700;
+                color: #fff;
+            }
+            .card img {
+                width: 48px;
+            }
+            .wide .card {
+                flex-basis: calc(100% - 40px);
+                scroll-snap-stop: always;
+            }
+            .tabs {
+                display: flex;
+                gap: 8px;
+                padding: 0 20px;
+                white-space: nowrap;
+            }
+            .tab {
+                flex: none;
+                padding: 8px 14px;
+                border: 1px solid #ddd;
+                border-radius: 999px;
+                background: #fff;
+                cursor: pointer;
+            }
+            .tab.is-active {
+                background: #222;
+                color: #fff;
+            }
+            .controls {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 12px 20px 0;
+            }
+            .controls button:disabled {
+                opacity: 0.3;
+            }
+            #log {
+                margin: 8px 20px;
+                font-size: 12px;
+                color: #999;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Product carousel — snap: x mandatory</h2>
+        <p>Drag with the mouse, flick to glide, pull past the edges. Cards are clickable (clicks after a drag are suppressed).</p>
+        <div id="carousel" class="dts-scroller dts-hide-scrollbar carousel"></div>
+        <div class="controls">
+            <button id="prev" type="button">‹ Prev</button>
+            <div id="fraction" class="dts-fraction"></div>
+            <div id="dots" class="dts-dots"></div>
+            <button id="next" type="button">Next ›</button>
+        </div>
+        <div id="log"></div>
+
+        <h2>One at a time — full-width slides, scroll-snap-stop: always</h2>
+        <div id="wide" class="dts-scroller dts-hide-scrollbar carousel wide"></div>
+
+        <h2>Tabs — no snap</h2>
+        <p>Clicking a tab centers it with a smooth scrollTo; dragging does not trigger the click.</p>
+        <div id="tabs" class="dts-scroller dts-hide-scrollbar tabs"></div>
+
+        <script type="module" src="./main.ts"></script>
+    </body>
+</html>

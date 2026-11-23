@@ -1,0 +1,9 @@
+# Skip versions published less than 7 days ago (supply-chain defense)
+minimumReleaseAge: 10080
+
+# Abort when a sub-dependency resolves outside the registry (git/tarball/http)
+blockExoticSubdeps: true
+
+# Install scripts — esbuild uses its prebuilt optional binary; the postinstall shim swap is not needed
+allowBuilds:
+  esbuild: false
